@@ -1,0 +1,23 @@
+<body>
+  <h3>Pay via Esewa</h3>
+  <form action="https://uat.esewa.com.np/epay/main" method="POST">
+    <input value="100" name="tAmt" type="hidden" />
+    <input value="90" name="amt" type="hidden" />
+    <input value="5" name="txAmt" type="hidden" />
+    <input value="2" name="psc" type="hidden" />
+    <input value="3" name="pdc" type="hidden" />
+    <input value="EPAYTEST" name="scd" type="hidden" />
+    <input value="math1111" name="pid" type="hidden" />
+    <input
+      value="http://localhost:8085/payment/success"
+      type="hidden"
+      name="su"
+    />
+    <input
+      value="http://localhost:8085/payment/failed"
+      type="hidden"
+      name="fu"
+    />
+    <input value="Submit" type="submit" />
+  </form>
+</body>
