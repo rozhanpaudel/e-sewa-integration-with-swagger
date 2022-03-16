@@ -16,3 +16,6 @@ Step 1: git clone project_url
 Step 2: npm install
 
 Step 3: npm run start
+
+
+ENJOY !! 
