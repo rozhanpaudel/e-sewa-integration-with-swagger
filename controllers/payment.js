@@ -4,6 +4,7 @@ const axios = require("axios");
 const FormData = require("form-data");
 
 const { XMLParser } = require("fast-xml-parser");
+const APIError = require("../errors/apiError");
 
 router.get("/failed", function (req, res, next) {
   res.json({
@@ -43,13 +44,9 @@ router.get("/success", async function (req, res, next) {
       });
     }
 
-    throw "Fraud Transcation Detected !!";
+    next(APIError(409, "Fraud Transcation Detected !"));
   } catch (err) {
-    res.status(500).json({
-      isSuccess: false,
-      msg: "Error Occured at Server Side",
-      error: err,
-    });
+    next(err);
   }
 });
 

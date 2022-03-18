@@ -9,6 +9,7 @@ const swaggerUI = require("swagger-ui-express");
 var indexRouter = require("./controllers/index");
 var usersRouter = require("./controllers/payment");
 const swaggerOptions = require("./configs/swagger.config");
+const apiErrorHandler = require("./middlewares/error.handler");
 
 const specs = swaggerJsDoc(swaggerOptions);
 const port = 8085;
@@ -29,21 +30,13 @@ app.use("/", indexRouter);
 app.use("/payment", usersRouter);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+app.use((req, res, next) => {
+  return res.status(404).json({
+    msg: "404 Page Not Found",
+  });
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
+app.use(apiErrorHandler);
 
 app.listen(port, (err, result) => {
   if (err) console.log(err);

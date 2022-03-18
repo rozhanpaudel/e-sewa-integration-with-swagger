@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 /**
@@ -10,8 +10,8 @@ var router = express.Router();
  * '200':
  *    description: A successfull response
  */
-router.get('/', function (req, res, next) {
-  res.render("index.ejs")
+router.get("/", function (req, res, next) {
+  res.render("index.ejs");
 });
 
 module.exports = router;
